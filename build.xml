@@ -2,9 +2,12 @@
 
     <property name="src" location="src" />
     <property name="build" location="build" />
+    <property name="classes" location="${build}/classes" />
+
 
     <target name="init" depends="clean">
         <mkdir dir="${build}" />
+        <mkdir dir="${classes}"/>
     </target>
 
     <path id="compile.classpath">
