@@ -24,12 +24,11 @@
     </target>
 
     <target name="jar" depends="compile" description="generate the distribution">
-        <buildnumber />
         <jar destfile="${build}/TorcDB-Client.jar" basedir="${classes}">
+            <zipgroupfileset dir="${lib}" includes="*.jar" excludes=""/>
             <manifest>
                 <attribute name="Main-Class" value="edu.missouri.Create.CreateTable"/>
             </manifest>
-            <fileset dir="${lib}" includes="*.jar" />
         </jar>
     </target>
 
