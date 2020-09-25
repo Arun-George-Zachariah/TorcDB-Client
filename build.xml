@@ -25,7 +25,11 @@
     <target name="jar" depends="compile" description="generate the distribution">
         <buildnumber />
         <mkdir dir="${build}" />
-        <jar destfile="${build}/TorcDB-Client.jar" basedir="${build}" />
+        <jar destfile="${build}/TorcDB-Client.jar" basedir="${build}">
+            <manifest>
+                <attribute name="Main-Class" value="com.Create.CreateTable"/>
+            </manifest>
+        </jar>
     </target>
 
     <target name="clean" description="clean up">

@@ -1,6 +1,5 @@
 package edu.missouri.Create;
 
-
 import edu.stanford.ramcloud.RAMCloud;
 
 public class CreateTable {
