@@ -3,6 +3,7 @@
     <property name="src" location="src" />
     <property name="build" location="build" />
     <property name="classes" location="${build}/classes" />
+    <property name="lib" location="lib" />
 
 
     <target name="init" depends="clean">
@@ -17,18 +18,18 @@
     </path>
 
     <target name="compile" depends="init" description="compile the source">
-        <javac destdir="build/classes" debug="true" srcdir="src">
+        <javac destdir="${classes}" debug="true" srcdir="src">
             <classpath refid="compile.classpath"/>
         </javac>
     </target>
 
     <target name="jar" depends="compile" description="generate the distribution">
         <buildnumber />
-        <mkdir dir="${build}" />
-        <jar destfile="${build}/TorcDB-Client.jar" basedir="${build}">
+        <jar destfile="${build}/TorcDB-Client.jar" basedir="${classes}">
             <manifest>
-                <attribute name="Main-Class" value="com.Create.CreateTable"/>
+                <attribute name="Main-Class" value="edu.missouri.Create.CreateTable"/>
             </manifest>
+            <fileset dir="${lib}" includes="*.jar" />
         </jar>
     </target>
 
