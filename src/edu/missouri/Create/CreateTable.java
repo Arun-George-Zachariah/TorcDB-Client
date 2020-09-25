@@ -9,5 +9,7 @@ public class CreateTable {
         RAMCloud client = new RAMCloud(coordinatorLocator);
         Long tableId = client.createTable("Test");
 
+        System.out.println("Table ID :: " + tableId);
+
     }
 }
