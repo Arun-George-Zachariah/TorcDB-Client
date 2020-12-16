@@ -11,7 +11,7 @@ public class Exec {
         String tableName = "TestTable";
         System.out.println("Creating table :: " + tableName);
 
-        long id = CreateTable.getInstance().createTable("test");
+        long id = CreateTable.getInstance().createTable(tableName);
         System.out.println("Successfully created table :: id :: " + id);
 
         String key = "1";
