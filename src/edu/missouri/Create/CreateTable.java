@@ -25,6 +25,8 @@ public class CreateTable {
         RAMCloud client = new RAMCloud(coordinatorLocator);
         long tableId = client.createTable(tableName);
 
+        client.disconnect();
+
         System.out.println("CreateTable :: createTable :: tableId :: " + tableId);
         return tableId;
     }

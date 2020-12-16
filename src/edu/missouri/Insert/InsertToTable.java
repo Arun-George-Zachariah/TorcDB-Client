@@ -1,13 +1,12 @@
 package edu.missouri.Insert;
 
 import edu.missouri.Constants.Constants;
-import edu.missouri.Util.CommonUtil;
-import edu.stanford.ramcloud.multiop.*;
-
-import java.nio.ByteBuffer;
+import edu.stanford.ramcloud.RAMCloud;
+import edu.stanford.ramcloud.Util;
 
 public class InsertToTable {
     public static InsertToTable instance = null;
+    public static String coordinatorLocator = null;
 
     private InsertToTable() {
 
@@ -15,24 +14,21 @@ public class InsertToTable {
 
     public static InsertToTable getInstance() {
         if(instance == null) {
+            Util.loadLibrary(Constants.RAMCLOUD_LIB);
+            coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
             instance = new InsertToTable();
         }
         return instance;
     }
 
-    public void writeToRAMCloud(long tableId, byte[] key, byte[] value) {
-        System.out.println("InsertToTable :: writeToRAMCloud :: Start");
+    public void writeToRAMCloud(long tableId, String key, String value) {
+        System.out.println("InsertToTable :: writeToRAMCloud :: tableId :: " + tableId + " :: key :: " + key + " :: value :: " + value);
 
-        ByteBuffer buffer = ByteBuffer.allocateDirect(100);
+        RAMCloud client = new RAMCloud(coordinatorLocator);
 
-        MultiWriteObject obj = new MultiWriteObject(tableId, key, value);
-        MultiWriteHandler handler = new MultiWriteHandler(buffer, 0, 0);
-        Boolean status = (Boolean) CommonUtil.getInstance().invoke(handler, Constants.WRITE_REQUEST, new Class[] {ByteBuffer.class, MultiWriteObject.class}, buffer, obj);
+        long version = client.write(tableId, key, value);
+        System.out.println("InsertToTable :: writeToRAMCloud :: version :: " + version);
 
-        if(status) {
-            System.out.println("InsertToTable :: writeToRAMCloud :: Successful execution.");
-        } else {
-            System.out.println("InsertToTable :: writeToRAMCloud :: Unsuccessful execution.");
-        }
+        client.disconnect();
     }
 }
