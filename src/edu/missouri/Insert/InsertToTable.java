@@ -4,7 +4,6 @@ import edu.missouri.Constants.Constants;
 import edu.missouri.Util.CommonUtil;
 import edu.stanford.ramcloud.multiop.*;
 
-import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 
 public class InsertToTable {
