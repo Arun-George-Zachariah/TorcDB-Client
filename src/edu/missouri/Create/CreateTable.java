@@ -1,15 +1,31 @@
 package edu.missouri.Create;
 
+import edu.missouri.Constants.Constants;
 import edu.stanford.ramcloud.RAMCloud;
 
 public class CreateTable {
-    public static void main(String[] args) {
-        String coordinatorLocator = System.getProperty("ramcloudCoordinatorLocator");
+    public static String coordinatorLocator = null;
+    public static CreateTable instance = null;
+
+    private CreateTable() {
+
+    }
+
+    public static CreateTable getInstance() {
+        if(instance == null) {
+            coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
+            instance = new CreateTable();
+        }
+        return instance;
+    }
+
+    public long createTable(String tableName) {
+        System.out.println("CreateTable :: createTable :: tableName :: " + tableName);
 
         RAMCloud client = new RAMCloud(coordinatorLocator);
-        Long tableId = client.createTable("Test");
+        long tableId = client.createTable(tableName);
 
-        System.out.println("Table ID :: " + tableId);
-
+        System.out.println("CreateTable :: createTable :: tableId :: " + tableId);
+        return tableId;
     }
 }
