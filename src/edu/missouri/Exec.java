@@ -9,7 +9,7 @@ import edu.missouri.Retrieve.ReadFromTable;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.Files;
+import java.util.Scanner;
 
 public class Exec {
     private static void basicTest() {
@@ -66,7 +66,7 @@ public class Exec {
     }
 
     private static void loadTest(long n) {
-        String tableName = "TestTable";
+        String tableName = "LoadTable";
         System.out.println("Creating table :: " + tableName);
 
         long id = CreateTable.getInstance().createTable(tableName);
@@ -94,7 +94,7 @@ public class Exec {
         ReadFromTable.getInstance().readFromRAMCloud(id, "0");
         Long readEndTime = System.currentTimeMillis();
 
-        System.out.println("Time taken to read key 0 is :: " + (readEndTime - startTime) + " ms");
+        System.out.println("Time taken to read key 0 is :: " + (readEndTime - writeEndTime) + " ms");
 
         System.out.println("Dropping the table :: id :: " + id);
         DropTable.getInstance().deleteTable(tableName);
@@ -102,8 +102,24 @@ public class Exec {
     }
 
     public static void main(String[] args) {
-        basicTest();
-        keySizeTest();
-        loadTest(10);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("List of available RAMCloud tests:");
+        System.out.println("1. Basic test. (Validates basic CRUD operations on RAMCloud)");
+        System.out.println("2. Key size test. (Validates the max size value that could be inserted onto RAMCloud)");
+        System.out.println("3. Load test. (Loads n keys and n values of size 1Mb onto RAMCloud)");
+
+        System.out.println("\n Choose a test value");
+
+        int input = scanner.nextInt();
+        if(input == 1) {
+            basicTest();
+        } else if(input == 2) {
+            keySizeTest();
+        } else if(input == 3) {
+            System.out.println("Enter the number of keys to be loaded");
+            loadTest(scanner.nextInt());
+        } else {
+            System.out.println("Unexpected input. Please restart the execution.");
+        }
     }
 }
