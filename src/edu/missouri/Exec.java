@@ -106,6 +106,7 @@ public class Exec {
         System.out.println("1. Basic test. (Validates basic CRUD operations on RAMCloud)");
         System.out.println("2. Key size test. (Validates the max size value that could be inserted onto RAMCloud)");
         System.out.println("3. Load test. (Loads n keys and n values of size 1Mb onto RAMCloud)");
+        System.out.println("4. Delete failed test tables.");
 
         System.out.println("\n Choose a test value");
 
@@ -122,6 +123,12 @@ public class Exec {
             String tableName = scanner.nextLine();
             System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
             loadTest(tableName, n);
+        } else if(input == 3) {
+            System.out.println("Enter the table name");
+            scanner.nextLine();
+            String tableName = scanner.nextLine();
+            System.out.println("Dropping the table :: tableName :: " + tableName);
+            DropTable.getInstance().deleteTable(tableName);
         } else {
             System.out.println("Unexpected input. Please restart the execution.");
         }
