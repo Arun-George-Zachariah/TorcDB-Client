@@ -22,7 +22,7 @@ public class InsertToTable {
     }
 
     public void writeToRAMCloud(long tableId, String key, String value) {
-        System.out.println("InsertToTable :: writeToRAMCloud :: tableId :: " + tableId + " :: key :: " + key + " :: value :: " + value);
+        System.out.println("InsertToTable :: writeToRAMCloud :: tableId :: " + tableId + " :: key :: " + key);
 
         RAMCloud client = new RAMCloud(coordinatorLocator);
 
