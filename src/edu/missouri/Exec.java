@@ -65,8 +65,7 @@ public class Exec {
         DropTable.getInstance().deleteTable(tableName);
     }
 
-    private static void loadTest(long n) {
-        String tableName = "LoadTable";
+    private static void loadTest(String tableName, long n) {
         System.out.println("Creating table :: " + tableName);
 
         long id = CreateTable.getInstance().createTable(tableName);
@@ -85,7 +84,7 @@ public class Exec {
             String key = String.valueOf(i);
 
             System.out.println("Adding to the table :: key :: " + key);
-            InsertToTable.getInstance().writeToRAMCloud(id, key, value);
+            InsertToTable.getInstance().writeToRAMCloud(id, key, value + i);
         }
         Long writeEndTime = System.currentTimeMillis();
         System.out.println("Time taken to insert :: n :: " + n + " :: entries is :: " + (writeEndTime - startTime) + " ms");
@@ -117,7 +116,11 @@ public class Exec {
             keySizeTest();
         } else if(input == 3) {
             System.out.println("Enter the number of keys to be loaded");
-            loadTest(scanner.nextInt());
+            int n = scanner.nextInt();
+            System.out.println("Enter the table name");
+            String tableName = scanner.nextLine();
+            System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
+            loadTest(tableName, n);
         } else {
             System.out.println("Unexpected input. Please restart the execution.");
         }
