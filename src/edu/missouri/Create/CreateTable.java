@@ -15,7 +15,7 @@ public class CreateTable {
     public static CreateTable getInstance() {
         if(instance == null) {
             coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
-            System.out.println("CreateTable :: getInstance :: instance :: " + instance);
+            System.out.println("CreateTable :: getInstance :: coordinatorLocator :: " + coordinatorLocator);
 
             if(System.getProperty(Constants.SERVER_SPAN) != null) {
                 serverSpan = Integer.parseInt(System.getProperty(Constants.SERVER_SPAN));
