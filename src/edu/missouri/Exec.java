@@ -123,7 +123,7 @@ public class Exec {
             String tableName = scanner.nextLine();
             System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
             loadTest(tableName, n);
-        } else if(input == 3) {
+        } else if(input == 4) {
             System.out.println("Enter the table name");
             scanner.nextLine();
             String tableName = scanner.nextLine();
