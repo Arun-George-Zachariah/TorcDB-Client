@@ -117,6 +117,7 @@ public class Exec {
         } else if(input == 3) {
             System.out.println("Enter the number of keys to be loaded");
             int n = scanner.nextInt();
+            scanner.nextLine();
             System.out.println("Enter the table name");
             String tableName = scanner.nextLine();
             System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
