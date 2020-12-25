@@ -22,6 +22,17 @@ public class ReadFromTable {
         return instance;
     }
 
+    public long getTableId(String tableName) {
+        System.out.println("ReadFromTable :: readFromRAMCloud :: tableName :: " + tableName);
+
+        RAMCloud client = new RAMCloud(coordinatorLocator);
+
+        long tableId = client.getTableId(tableName);
+
+        System.out.println("ReadFromTable :: readFromRAMCloud :: tableId :: " + tableId);
+        return tableId;
+    }
+
     public String readFromRAMCloud(long tableId, String key) {
         System.out.println("ReadFromTable :: readFromRAMCloud :: key :: " + key);
 

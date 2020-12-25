@@ -95,9 +95,26 @@ public class Exec {
 
         System.out.println("Time taken to read key 0 is :: " + (readEndTime - writeEndTime) + " ms");
 
-        System.out.println("Dropping the table :: id :: " + id);
-        DropTable.getInstance().deleteTable(tableName);
+    }
 
+    private static void fetchTest(String tableName, long n, long count) {
+        long tableId = ReadFromTable.getInstance().getTableId(tableName);
+
+        Long readStartTime = System.currentTimeMillis();
+
+        for(long i=0; i<count; i++) {
+            long randomKey = (long) (Math.random() * (n - 0));
+
+            System.out.println("Retrieving value for :: key :: " + randomKey);
+
+            Long startTime = System.currentTimeMillis();
+            ReadFromTable.getInstance().readFromRAMCloud(tableId, String.valueOf(randomKey));
+            Long endTime = System.currentTimeMillis();
+            System.out.println("Time taken to read key is :: " + (endTime - startTime) + " ms");
+        }
+
+        Long readEndTime = System.currentTimeMillis();
+        System.out.println("Total time taken to read :: " + (readEndTime - readStartTime) + " ms");
     }
 
     public static void main(String[] args) {
@@ -106,7 +123,8 @@ public class Exec {
         System.out.println("1. Basic test. (Validates basic CRUD operations on RAMCloud)");
         System.out.println("2. Key size test. (Validates the max size value that could be inserted onto RAMCloud)");
         System.out.println("3. Load test. (Loads n keys and n values of size 1Mb onto RAMCloud)");
-        System.out.println("4. Delete failed test tables.");
+        System.out.println("4. Fetch test (Fetches 1000 random records from RAMCloud).");
+        System.out.println("5. Delete test tables.");
 
         System.out.println("\n Choose a test value");
 
@@ -123,7 +141,17 @@ public class Exec {
             String tableName = scanner.nextLine();
             System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
             loadTest(tableName, n);
-        } else if(input == 4) {
+        }  else if(input == 4) {
+            System.out.println("Enter the number of keys loaded");
+            int n = scanner.nextInt();
+            System.out.println("Enter the number of keys to retrieve");
+            int count = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Enter the table name");
+            String tableName = scanner.nextLine();
+            System.out.println("Starting fetch test on : " + tableName + " with " + n + "entries.");
+            fetchTest(tableName, n, count);
+        } else if(input == 5) {
             System.out.println("Enter the table name");
             scanner.nextLine();
             String tableName = scanner.nextLine();
