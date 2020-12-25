@@ -150,7 +150,7 @@ public class Exec {
             System.out.println("Enter the table name");
             String tableName = scanner.nextLine();
             System.out.println("Starting fetch test on : " + tableName + " with " + n + "entries.");
-            fetchTest(tableName, n, count);
+            fetchTest(tableName, (n-1), count);
         } else if(input == 5) {
             System.out.println("Enter the table name");
             scanner.nextLine();
