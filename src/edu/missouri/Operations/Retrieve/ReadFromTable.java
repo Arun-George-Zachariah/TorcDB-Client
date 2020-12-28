@@ -52,7 +52,7 @@ public class ReadFromTable {
 //            System.out.println("ReadFromTable :: readFromRAMCloud :: Exception ::");
             e.printStackTrace();
         } finally {
-            client.disconnect();
+//            client.disconnect();
         }
 
         return null;
