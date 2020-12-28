@@ -105,12 +105,12 @@ public class Exec {
         for(long i=0; i<count; i++) {
             long randomKey = (long) (Math.random() * (n - 0));
 
-            System.out.println("Retrieving value for :: key :: " + randomKey);
+//            System.out.println("Retrieving value for :: key :: " + randomKey);
 
-            Long startTime = System.currentTimeMillis();
+//            Long startTime = System.currentTimeMillis();
             ReadFromTable.getInstance().readFromRAMCloud(tableId, String.valueOf(randomKey));
-            Long endTime = System.currentTimeMillis();
-            System.out.println("Time taken to read key is :: " + (endTime - startTime) + " ms");
+//            Long endTime = System.currentTimeMillis();
+//            System.out.println("Time taken to read key is :: " + (endTime - startTime) + " ms");
         }
 
         Long readEndTime = System.currentTimeMillis();

@@ -22,18 +22,18 @@ public class ReadFromTable {
     }
 
     public long getTableId(String tableName) {
-        System.out.println("ReadFromTable :: readFromRAMCloud :: tableName :: " + tableName);
+//        System.out.println("ReadFromTable :: readFromRAMCloud :: tableName :: " + tableName);
 
         RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
         long tableId = client.getTableId(tableName);
 
-        System.out.println("ReadFromTable :: readFromRAMCloud :: tableId :: " + tableId);
+//        System.out.println("ReadFromTable :: readFromRAMCloud :: tableId :: " + tableId);
         return tableId;
     }
 
     public String readFromRAMCloud(long tableId, String key) {
-        System.out.println("ReadFromTable :: readFromRAMCloud :: key :: " + key);
+//        System.out.println("ReadFromTable :: readFromRAMCloud :: key :: " + key);
 
         RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
@@ -41,15 +41,15 @@ public class ReadFromTable {
             RAMCloudObject readResults = client.read(tableId, key);
 
             if(readResults != null) {
-                System.out.println("ReadFromTable :: readFromRAMCloud :: Returned value :: " + readResults.getValue() + " :: for the key :: " + readResults.getKey() + " :: with the version :: " + readResults.getVersion());
+//                System.out.println("ReadFromTable :: readFromRAMCloud :: Returned value :: " + readResults.getValue() + " :: for the key :: " + readResults.getKey() + " :: with the version :: " + readResults.getVersion());
                 return readResults.getValue();
             } else {
-                System.out.println("ReadFromTable :: readFromRAMCloud :: Could not retrieve the value.");
+//                System.out.println("ReadFromTable :: readFromRAMCloud :: Could not retrieve the value.");
                 return null;
             }
 
         } catch (Exception e) {
-            System.out.println("ReadFromTable :: readFromRAMCloud :: Exception ::");
+//            System.out.println("ReadFromTable :: readFromRAMCloud :: Exception ::");
             e.printStackTrace();
         } finally {
             client.disconnect();
