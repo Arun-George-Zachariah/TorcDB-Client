@@ -26,7 +26,7 @@ public class DeleteFromTable {
         RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
         long version = client.remove(tableId, key);
-        System.out.println("InsertToTable :: deleteFromTable :: version :: " + version);
+        System.out.println("DeleteFromTable :: deleteFromTable :: version :: " + version);
 
 //        client.disconnect();
     }

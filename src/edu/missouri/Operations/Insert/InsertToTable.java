@@ -21,12 +21,12 @@ public class InsertToTable {
     }
 
     public void writeToRAMCloud(long tableId, String key, String value) {
-        System.out.println("InsertToTable :: writeToRAMCloud :: tableId :: " + tableId + " :: key :: " + key);
+//        System.out.println("InsertToTable :: writeToRAMCloud :: tableId :: " + tableId + " :: key :: " + key);
 
         RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
         long version = client.write(tableId, key, value);
-        System.out.println("InsertToTable :: writeToRAMCloud :: version :: " + version);
+//        System.out.println("InsertToTable :: writeToRAMCloud :: version :: " + version);
 
 //        client.disconnect();
     }

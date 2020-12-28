@@ -83,7 +83,7 @@ public class Exec {
         for(long i=0; i<n; i++) {
             String key = String.valueOf(i);
 
-            System.out.println("Adding to the table :: key :: " + key);
+//            System.out.println("Adding to the table :: key :: " + key);
             InsertToTable.getInstance().writeToRAMCloud(id, key, value + i);
         }
         Long writeEndTime = System.currentTimeMillis();
