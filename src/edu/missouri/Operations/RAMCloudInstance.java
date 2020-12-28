@@ -12,6 +12,8 @@ public class RAMCloudInstance {
         if(instance == null) {
             coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
             System.out.println("RAMCloudInstance :: getInstance :: coordinatorLocator :: " + coordinatorLocator);
+
+            instance = new RAMCloudInstance();
         }
         return instance;
     }
