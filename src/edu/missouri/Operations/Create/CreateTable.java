@@ -1,11 +1,11 @@
-package edu.missouri.Create;
+package edu.missouri.Operations.Create;
 
 import edu.missouri.Constants.Constants;
+import edu.missouri.Operations.RAMCloudInstance;
 import edu.stanford.ramcloud.RAMCloud;
 
 public class CreateTable {
     public static int serverSpan=1;
-    public static String coordinatorLocator = null;
     public static CreateTable instance = null;
 
     private CreateTable() {
@@ -14,9 +14,6 @@ public class CreateTable {
 
     public static CreateTable getInstance() {
         if(instance == null) {
-            coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
-            System.out.println("CreateTable :: getInstance :: coordinatorLocator :: " + coordinatorLocator);
-
             if(System.getProperty(Constants.SERVER_SPAN) != null) {
                 serverSpan = Integer.parseInt(System.getProperty(Constants.SERVER_SPAN));
                 System.out.println("CreateTable :: getInstance :: serverSpan :: " + serverSpan);
@@ -29,10 +26,11 @@ public class CreateTable {
     public long createTable(String tableName) {
         System.out.println("CreateTable :: createTable :: tableName :: " + tableName);
 
-        RAMCloud client = new RAMCloud(coordinatorLocator);
+        RAMCloud client = RAMCloudInstance.getInstance().getClient();
+
         long tableId = client.createTable(tableName, serverSpan);
 
-        client.disconnect();
+//        client.disconnect();
 
         System.out.println("CreateTable :: createTable :: tableId :: " + tableId);
         return tableId;

@@ -1,13 +1,13 @@
-package edu.missouri.Retrieve;
+package edu.missouri.Operations.Retrieve;
 
 import edu.missouri.Constants.Constants;
+import edu.missouri.Operations.RAMCloudInstance;
 import edu.stanford.ramcloud.RAMCloud;
 import edu.stanford.ramcloud.RAMCloudObject;
 import edu.stanford.ramcloud.Util;
 
 public class ReadFromTable {
     public static ReadFromTable instance = null;
-    public static String coordinatorLocator = null;
 
     private ReadFromTable() {
 
@@ -16,7 +16,6 @@ public class ReadFromTable {
     public static ReadFromTable getInstance() {
         if(instance == null) {
             Util.loadLibrary(Constants.RAMCLOUD_LIB);
-            coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
             instance = new ReadFromTable();
         }
         return instance;
@@ -25,7 +24,7 @@ public class ReadFromTable {
     public long getTableId(String tableName) {
         System.out.println("ReadFromTable :: readFromRAMCloud :: tableName :: " + tableName);
 
-        RAMCloud client = new RAMCloud(coordinatorLocator);
+        RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
         long tableId = client.getTableId(tableName);
 
@@ -36,7 +35,7 @@ public class ReadFromTable {
     public String readFromRAMCloud(long tableId, String key) {
         System.out.println("ReadFromTable :: readFromRAMCloud :: key :: " + key);
 
-        RAMCloud client = new RAMCloud(coordinatorLocator);
+        RAMCloud client = RAMCloudInstance.getInstance().getClient();
 
         try {
             RAMCloudObject readResults = client.read(tableId, key);

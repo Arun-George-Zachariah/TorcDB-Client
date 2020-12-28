@@ -1,10 +1,10 @@
 package edu.missouri;
 
-import edu.missouri.Create.CreateTable;
-import edu.missouri.Delete.DeleteFromTable;
-import edu.missouri.Delete.DropTable;
-import edu.missouri.Insert.InsertToTable;
-import edu.missouri.Retrieve.ReadFromTable;
+import edu.missouri.Operations.Create.CreateTable;
+import edu.missouri.Operations.Delete.DeleteFromTable;
+import edu.missouri.Operations.Delete.DropTable;
+import edu.missouri.Operations.Insert.InsertToTable;
+import edu.missouri.Operations.Retrieve.ReadFromTable;
 
 import java.io.BufferedReader;
 import java.io.File;
