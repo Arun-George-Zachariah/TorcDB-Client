@@ -139,7 +139,7 @@ public class Exec {
             scanner.nextLine();
             System.out.println("Enter the table name");
             String tableName = scanner.nextLine();
-            System.out.println("Starting load test on : " + tableName + " with " + n + "entries.");
+            System.out.println("Starting load test on : " + tableName + " with " + n + " entries.");
             loadTest(tableName, n);
         }  else if(input == 4) {
             System.out.println("Enter the number of keys loaded");

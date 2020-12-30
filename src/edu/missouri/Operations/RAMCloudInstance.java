@@ -2,6 +2,7 @@ package edu.missouri.Operations;
 
 import edu.missouri.Constants.Constants;
 import edu.stanford.ramcloud.RAMCloud;
+import edu.stanford.ramcloud.Util;
 
 public class RAMCloudInstance {
     public static RAMCloudInstance instance = null;
@@ -10,6 +11,8 @@ public class RAMCloudInstance {
 
     public static RAMCloudInstance getInstance() {
         if(instance == null) {
+            Util.loadLibrary("ramcloud_java");
+
             coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
             System.out.println("RAMCloudInstance :: getInstance :: coordinatorLocator :: " + coordinatorLocator);
 
