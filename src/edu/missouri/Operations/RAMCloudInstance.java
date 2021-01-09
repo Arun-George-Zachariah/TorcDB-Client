@@ -18,7 +18,7 @@ public class RAMCloudInstance {
 
     public static RAMCloud getClient() {
         if(client == null) {
-            System.out.println("RAMCloudInstance :: getInstance :: Creating RAMCloud client with coordinatorLocator :: " + coordinatorLocator);
+            System.out.println("RAMCloudInstance :: getInstance :: Creating RAMCloud client");
 
             String coordinatorLocator = System.getProperty(Constants.RC_COORDINATOR_LOC);
             System.out.println("RAMCloudInstance :: getInstance :: coordinatorLocator :: " + coordinatorLocator);
